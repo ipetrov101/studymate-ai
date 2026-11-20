@@ -1,4 +1,5 @@
 import commands
+import storage
 
 
 def main():
@@ -6,6 +7,12 @@ def main():
     print("Добро пожаловать в StudyMate AI!")
     print("Ваш помощник для управления учебными задачами.")
 
+    try:
+        storage.load_tasks()
+        print(f"Загружено задач: {len(storage.tasks)}")
+    except (OSError, ValueError) as error:
+        print(f"Ошибка загрузки данных: {error}")
+        return
     commands.show_help()
 
     running = True
