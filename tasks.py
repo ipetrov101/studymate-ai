@@ -13,6 +13,7 @@ def add_task(name, subject, due_date):
 
     storage.tasks.append(task)
     storage.next_task_id += 1
+    storage.save_tasks()
 
     return task
 
@@ -30,6 +31,7 @@ def complete_task(task_id):
                 return False
 
             task["completed"] = True
+            storage.save_tasks()
             return True
 
     return None
